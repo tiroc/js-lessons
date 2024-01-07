@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotton shirt</title>
+    <style>
+        .cart{
+            background-color: yellow;
+        }
+        .buy{
+            background-color: red;
+        }
+        .buy_box{
+            border: 1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="buy_box">
+        <h2>Adult Plain cotton T-shirt</h2>
+        <p>Price: $7.99</p>
+        <span>
+            <button class="cart" onclick="alert('Added');">Add to cart</button>
+            <button class="buy" onclick="console.log('Loading...'); alert('Purchased')">Buy now</button>
+        </span>
+    </div>
+</body>
+</html>
