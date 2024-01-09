@@ -38,14 +38,12 @@
     </p>
 
     <script>
-        let score = JSON.parse(localStorage.getItem('score'));
-        if (!score){
-            score = {
+        let score = JSON.parse(localStorage.getItem('score')) || {
                 wins: 0,
                 losses: 0,
                 draws: 0,
-            }
-        };
+            };
+        
         console.log(score);
         function getResult(userMove){
             const computerMove = pickComputerMove();
