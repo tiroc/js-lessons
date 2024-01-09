@@ -30,6 +30,7 @@
             score.wins = 0;
             score.draws = 0;
             score.losses = 0;
+            localStorage.removeItem('score');
             alert(`The score has been reset \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
             ">
             Reset
@@ -37,11 +38,8 @@
     </p>
 
     <script>
-        const score = {
-            wins : 0,
-            losses : 0,
-            draws : 0,
-        };
+        const score = JSON.parse(localStorage.getItem('score'));
+        //console.log(JSON.parse(localStorage.getItem('score')));
         console.log(score);
         function getResult(userMove){
             const computerMove = pickComputerMove();
@@ -62,6 +60,7 @@
             result = 'You lose!!';
             score.losses ++;
             }
+            localStorage.setItem('score', JSON.stringify(score));
             console.log(score);
             alert(`${result} \nYou picked ${userMove}. The computer picked ${computerMove} \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
 
