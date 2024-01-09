@@ -60,9 +60,9 @@
                 score.wins ++;
             }
             else if ((userMove == 'scissors' && computerMove == 'rock')||(userMove == 'rock' && computerMove == 'paper')||(userMove == 'paper' && computerMove == 'scissors')){
-            //alert(`You lose!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
-            result = 'You lose!!';
-            score.losses ++;
+                //alert(`You lose!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
+                result = 'You lose!!';
+                score.losses ++;
             }
             localStorage.setItem('score', JSON.stringify(score));
             console.log(score);
