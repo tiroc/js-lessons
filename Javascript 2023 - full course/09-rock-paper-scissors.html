@@ -71,6 +71,7 @@
                 losses: 0,
                 draws: 0,
             };
+            
         function resetGame(){
             score.wins = 0;
             score.draws = 0;
@@ -102,27 +103,26 @@
                 //alert(`Its a draw!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
                 result = 'Draw.';
                 score.draws ++;
-                document.querySelector('.js-player-result').innerHTML = 'Draw';
-                document.querySelector('.js-computer-result').innerHTML = 'Draw';
+                computerResult = 'Draw.';
             }
             else if ((userMove == 'rock' && computerMove == 'scissors')||(userMove == 'paper' && computerMove == 'rock')||(userMove == 'scissors' && computerMove == 'paper')){
                 //alert(`You win!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
-                result = 'You win!!';
+                result = 'Win!!';
                 score.wins ++;
-                document.querySelector('.js-player-result').innerHTML = 'Win!';
-                document.querySelector('.js-computer-result').innerHTML = 'Lose!';
+                computerResult = 'Lose!';
             }
             else if ((userMove == 'scissors' && computerMove == 'rock')||(userMove == 'rock' && computerMove == 'paper')||(userMove == 'paper' && computerMove == 'scissors')){
                 //alert(`You lose!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
-                result = 'You lose!!';
+                result = 'Lose!';
+                computerResult = 'Win!!';
                 score.losses ++;
-                document.querySelector('.js-player-result').innerHTML = 'Lose!';
-                document.querySelector('.js-computer-result').innerHTML = 'Win!';
             }
             localStorage.setItem('score', JSON.stringify(score));
             console.log(score);
             
             // Show result on page
+            document.querySelector('.js-player-result').innerHTML = result;
+            document.querySelector('.js-computer-result').innerHTML = computerResult;
             document.querySelector('.js-win-count').innerHTML = `Wins: ${score.wins}`;
             document.querySelector('.js-losses-count').innerHTML = `Losses: ${score.losses}`;
             document.querySelector('.js-draws-count').innerHTML = `Draws: ${score.draws}`;
