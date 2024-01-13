@@ -77,18 +77,24 @@
             score.draws = 0;
             score.losses = 0;
             localStorage.removeItem('score');
+            userMove = computerMove = result = computerResult = ' ';
 
-            document.querySelector('.js-player-choice').innerHTML = ' ';
-            document.querySelector('.js-computer-choice').innerHTML = ' ';
+            updateTableElement(userMove, computerMove, result, computerResult);
+            updateScoreElement(score.wins, score.losses, score.draws);
 
-            document.querySelector('.js-player-result').innerHTML = ' ';
-            document.querySelector('.js-computer-result').innerHTML = ' ';
-
-            document.querySelector('.js-win-count').innerHTML = `Wins: ${score.wins}`;
-            document.querySelector('.js-losses-count').innerHTML = `Losses: ${score.losses}`;
-            document.querySelector('.js-draws-count').innerHTML = `Draws: ${score.draws}`;
-            //alert(`The score has been reset \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
             
+            //alert(`The score has been reset \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
+        }
+        function updateScoreElement(Win, Lose, Draw){
+            document.querySelector('.js-win-count').innerHTML = `Wins: ${Win}`;
+            document.querySelector('.js-losses-count').innerHTML = `Losses: ${Lose}`;
+            document.querySelector('.js-draws-count').innerHTML = `Draws: ${Draw}`;
+        }
+        function updateTableElement(userMove, computerMove, result, computerResult){
+            document.querySelector('.js-player-choice').innerHTML = `${userMove}`;
+            document.querySelector('.js-computer-choice').innerHTML = `${computerMove}`;
+            document.querySelector('.js-player-result').innerHTML = result;
+            document.querySelector('.js-computer-result').innerHTML = computerResult;
         }
         console.log(score);
         function getResult(userMove){
@@ -96,8 +102,7 @@
             let result = '';
 
             //show player and computer move
-            document.querySelector('.js-player-choice').innerHTML = `${userMove}`;
-            document.querySelector('.js-computer-choice').innerHTML = `${computerMove}`;
+            
 
             if (userMove == computerMove){
                 //alert(`Its a draw!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
@@ -121,11 +126,8 @@
             console.log(score);
             
             // Show result on page
-            document.querySelector('.js-player-result').innerHTML = result;
-            document.querySelector('.js-computer-result').innerHTML = computerResult;
-            document.querySelector('.js-win-count').innerHTML = `Wins: ${score.wins}`;
-            document.querySelector('.js-losses-count').innerHTML = `Losses: ${score.losses}`;
-            document.querySelector('.js-draws-count').innerHTML = `Draws: ${score.draws}`;
+            updateTableElement(userMove, computerMove, result, computerResult);
+            updateScoreElement(score.wins, score.losses, score.draws);
 
             //alert(`${result} \nYou picked ${userMove}. The computer picked ${computerMove} \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
 
