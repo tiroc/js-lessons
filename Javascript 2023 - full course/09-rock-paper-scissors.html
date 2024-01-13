@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
-    <p> Rock Paper Scissors</p>
+    <h2> Rock Paper Scissors</h2>
     <p>
         <button
             onclick="
@@ -24,14 +31,35 @@
             >Scissors
         </button>
     </p>
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Choice</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>You</td>
+            <td class="js-player-choice"></td>
+            <td class="js-player-result"></td>
+        </tr>
+        <tr>
+            <td>Computer</td>
+            <td class="js-computer-choice"></td>
+            <td class="js-computer-result"></td>
+        </tr>
+    </table>
+    <h3>Score</h3>
+    <p> 
+        <ul>
+            <li class="js-win-count">Wins:</li>
+            <li class="js-losses-count">Losses:</li>
+            <li class="js-draws-count">Draws:</li>
+        </ul>
+    </p>
     <p>
         <button
             onclick = "
-            score.wins = 0;
-            score.draws = 0;
-            score.losses = 0;
-            localStorage.removeItem('score');
-            alert(`The score has been reset \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
+            resetGame();
             ">
             Reset
         </button>
@@ -43,30 +71,63 @@
                 losses: 0,
                 draws: 0,
             };
-        
+        function resetGame(){
+            score.wins = 0;
+            score.draws = 0;
+            score.losses = 0;
+            localStorage.removeItem('score');
+
+            document.querySelector('.js-player-choice').innerHTML = ' ';
+            document.querySelector('.js-computer-choice').innerHTML = ' ';
+
+            document.querySelector('.js-player-result').innerHTML = ' ';
+            document.querySelector('.js-computer-result').innerHTML = ' ';
+
+            document.querySelector('.js-win-count').innerHTML = `Wins: ${score.wins}`;
+            document.querySelector('.js-losses-count').innerHTML = `Losses: ${score.losses}`;
+            document.querySelector('.js-draws-count').innerHTML = `Draws: ${score.draws}`;
+            //alert(`The score has been reset \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
+            
+        }
         console.log(score);
         function getResult(userMove){
             const computerMove = pickComputerMove();
             let result = '';
 
+            //show player and computer move
+            document.querySelector('.js-player-choice').innerHTML = `${userMove}`;
+            document.querySelector('.js-computer-choice').innerHTML = `${computerMove}`;
+
             if (userMove == computerMove){
                 //alert(`Its a draw!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
                 result = 'Draw.';
                 score.draws ++;
+                document.querySelector('.js-player-result').innerHTML = 'Draw';
+                document.querySelector('.js-computer-result').innerHTML = 'Draw';
             }
             else if ((userMove == 'rock' && computerMove == 'scissors')||(userMove == 'paper' && computerMove == 'rock')||(userMove == 'scissors' && computerMove == 'paper')){
                 //alert(`You win!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
                 result = 'You win!!';
                 score.wins ++;
+                document.querySelector('.js-player-result').innerHTML = 'Win!';
+                document.querySelector('.js-computer-result').innerHTML = 'Lose!';
             }
             else if ((userMove == 'scissors' && computerMove == 'rock')||(userMove == 'rock' && computerMove == 'paper')||(userMove == 'paper' && computerMove == 'scissors')){
                 //alert(`You lose!! \nYou picked ${userMove}. The computer picked ${computerMove}`);
                 result = 'You lose!!';
                 score.losses ++;
+                document.querySelector('.js-player-result').innerHTML = 'Lose!';
+                document.querySelector('.js-computer-result').innerHTML = 'Win!';
             }
             localStorage.setItem('score', JSON.stringify(score));
             console.log(score);
-            alert(`${result} \nYou picked ${userMove}. The computer picked ${computerMove} \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
+            
+            // Show result on page
+            document.querySelector('.js-win-count').innerHTML = `Wins: ${score.wins}`;
+            document.querySelector('.js-losses-count').innerHTML = `Losses: ${score.losses}`;
+            document.querySelector('.js-draws-count').innerHTML = `Draws: ${score.draws}`;
+
+            //alert(`${result} \nYou picked ${userMove}. The computer picked ${computerMove} \n Wins: ${score.wins} \n Losses: ${score.losses} \n Draws: ${score.draws}`);
 
             return result;
         }
