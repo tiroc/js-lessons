@@ -15,8 +15,15 @@
             border-radius: 10px;
             padding: 15px;
         }
+        td{
+            background-color: grey;
+            
+        }
         h2{
             font-weight: bold;
+        }
+        .move-icon{
+            height: 100px;
         }
     </style>
 </head>
@@ -25,18 +32,21 @@
     <p>
         <button
             onclick="
-            getResult('rock');"
-            >Rock
+            getResult('rock');
+            ">
+            <img src='rock-emoji.png' class="move-icon">
         </button>
         <button
             onclick="
             getResult('paper');"
-            >Paper
+            >
+            <img src='paper-emoji.png' class="move-icon">
         </button>
         <button
             onclick="
             getResult('scissors');"
-            >Scissors
+            >
+            <img src='scissors-emoji.png' class="move-icon">
         </button>
     </p>
     <table>
