@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Projects</title>
     <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
         .subscribe-button{
             border: none;
             background-color: black;
@@ -13,7 +16,25 @@
             padding: 0.75em 1em;
             font-weight: bold;
             cursor: pointer;
-        };
+            margin-bottom: 30px;
+        }
+        .is-subscribed{
+            background-color: rgb(240, 240, 240);
+            color: black;
+        }
+        .cost-input{
+            font-size: 1.2em;
+            padding: 0.5em;
+        }
+        .show-cost{
+            padding: 0.6em 0.5em;
+            font-size: 1.2em;
+            border: none;
+            color: white;
+            background-color: green;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -28,14 +49,16 @@
     <p>Shipping costs $10 for orders under $40.</p>
     <p>Shipping is free for orders over $40.</p>
 
-    <input placeholder="Cost of order" class="js-cost-input" onkeydown="
+    <input placeholder="Cost of order" class="js-cost-input cost-input" onkeydown="
     if (event.key === 'Enter'){
         calculateTotal();
     }">
     <button onclick="
         calculateTotal();  
-    ">Calculate</button>
-    <p class="js-show-cost"></p>
+    "
+    class="show-cost"
+    >Calculate</button>
+    <p class="js-show-cost "></p>
 
     <script>
         function calculateTotal(){
@@ -53,11 +76,13 @@
                 let buttonElement = document.querySelector('.js-subscribe-button')
             if (buttonElement.innerText === 'Subscribe'){
                 buttonElement.innerText = 'Subscribed';
+                buttonElement.classList.add('is-subscribed');
             }  
             else {
                 buttonElement.innerText = 'Subscribe';
+                buttonElement.classList.remove('is-subscribed');
             }
-        };
+        }
     </script>
 </body>
 </html>
